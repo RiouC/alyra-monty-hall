@@ -81,7 +81,6 @@ const main = () => {
 	}
     }
     if (doors[indexChoice][0] === 'car') {
-	// doors[indexChoice][1] = true;
 	console.log('Félicitations !')
     }
     else
@@ -92,10 +91,13 @@ const main = () => {
     console.log(printDoors(doors, indexChoice));
 }
 
-main()
+if (require.main === module) {
+    main();
+}
 
 
 exports.doors = doors;
+exports.printDoors = printDoors;
 exports.setCar = setCar;
 exports.openGoat = openGoat;
 exports.takeOtherGoat = takeOtherGoat
