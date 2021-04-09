@@ -9,19 +9,11 @@ const automatedRun = (changeChoice) => {
     doors = ['goat', 'goat', 'goat'].map(el => [el, false]);
     setCar(doors);
     
-    // let possibleIndex = [1, 2, 3];
-    // let indexChoice = readlineSync.keyInSelect(possibleIndex, 'Choose a door : ');    
     let indexChoice = randomInt(0, doors.length);
-    
-    // console.log(`choice : ${indexChoice+1}`)
-    // console.log(printDoors(doors, indexChoice));
 
     // open 1 goat
     let indexOpenGoat =  openGoat(doors, indexChoice);
-    // console.log(`Door ${indexOpenGoat+1} is a goat`);
-    // console.log(printDoors(doors, indexChoice));
     
-    // changeChoice = readlineSync.keyInYN('Change door ?');
     
     if (changeChoice) {
 	let i = 0;
@@ -40,7 +32,6 @@ const automatedRun = (changeChoice) => {
 	return false;
     }
     
-    // printDoor(doors, indexChoice);
     console.log(printDoors(doors, indexChoice));
 }
 
