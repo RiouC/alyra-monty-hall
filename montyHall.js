@@ -73,7 +73,6 @@ const main = () => {
     
     changeChoice = readlineSync.keyInYN('Change door ?');
     if (changeChoice) {
-	let i = 0;
 	for (let i = 0; i < doors.length; i++) {
 	    if (i !== indexChoice && doors[i][1] === false) {
 		indexChoice = i;
