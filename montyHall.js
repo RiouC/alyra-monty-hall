@@ -4,7 +4,7 @@ const { randomInt } = require('crypto')
 
 const doors = ['goat', 'goat', 'goat'].map(el => [el, false]);
 
-const printDoor = (doors, indexChoice) => {
+const debugPrintDoor = (doors, indexChoice) => {
     for (let i = 0; i < doors.length; i++) {
 	if (i === indexChoice)
 	    console.log(`Door ${i+1}: ${doors[i][0]} / ${doors[i][1]} <---`);
@@ -12,6 +12,12 @@ const printDoor = (doors, indexChoice) => {
 	    console.log(`Door ${i+1}: ${doors[i][0]} / ${doors[i][1]}`);
     }
     console.log();
+}
+
+const printDoors = (doors, indexChoice) => {
+    const tmp = doors.map(el => el[1] === true ? el[0] : '_');
+    tmp[indexChoice] = tmp[indexChoice] + '  <---';
+    return tmp.join('\n');
 }
 
 const setCar = (doors) => {
@@ -56,12 +62,14 @@ const main = () => {
     let possibleIndex = [1, 2, 3];
     let indexChoice = readlineSync.keyInSelect(possibleIndex, 'Choose a door : ');
     // console.log(`choice : ${indexChoice+1}`)
-    printDoor(doors, indexChoice);
+    // printDoor(doors, indexChoice);
+    console.log(printDoors(doors, indexChoice));
 
     // open 1 goat
     let indexOpenGoat =  openGoat(doors, indexChoice);
-    console.log(`Door ${indexOpenGoat+1} is a goat\n`);
-    printDoor(doors, indexChoice);
+    console.log(`Door ${indexOpenGoat+1} is a goat`);
+    // printDoor(doors, indexChoice);
+    console.log(printDoors(doors, indexChoice));
     
     changeChoice = readlineSync.keyInYN('Change door ?');
     if (changeChoice) {
@@ -73,12 +81,15 @@ const main = () => {
 	}
     }
     if (doors[indexChoice][0] === 'car') {
-	doors[indexChoice][1] = true;
+	// doors[indexChoice][1] = true;
 	console.log('Félicitations !')
     }
     else
 	console.log('Dommage !')
-    printDoor(doors, indexChoice);
+
+    doors[indexChoice][1] = true;
+    // printDoor(doors, indexChoice);
+    console.log(printDoors(doors, indexChoice));
 }
 
 main()
@@ -86,3 +97,6 @@ main()
 
 exports.doors = doors;
 exports.setCar = setCar;
+exports.openGoat = openGoat;
+exports.takeOtherGoat = takeOtherGoat
+exports.takeRandomGoat = takeRandomGoat
